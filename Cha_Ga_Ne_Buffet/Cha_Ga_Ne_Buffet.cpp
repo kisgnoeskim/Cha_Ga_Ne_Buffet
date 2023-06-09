@@ -78,21 +78,27 @@ void stackk() {
     int top_num = -1;
 
     while (1) {
+        cout << endl;
         cout << "(1) 짐 싣기 (2) 짐 빼기 (3) 메인 화면으로 돌아가기" << endl;
         cin >> stack_select;
 
+        // Stack이 꽉 찼는지 확인하는 부분
         if (stack_select == 1) { // push 부분
             if (top_num == SIZE - 1) {
-                cout << "용달차가 꽉 찼습니다." << endl;
+                cout << "용달차가 꽉 찼슴~" << endl;
                 continue;
             }
 
+            cout << endl;
+            // 짐을 싣는 부분
             string item;
             cout << "짐을 넣어주세요" << endl;
             cin >> item;
 
+            //car stack에 item을 넣는 부분
             car[++top_num] = item;
 
+            cout << endl;
             // 현재 안에 있는 짐 출력
             cout << "현재 차 안에 있는 짐" << endl;
             for (int i = 0; i <= top_num; i++) {
@@ -103,14 +109,19 @@ void stackk() {
         }
 
         else if (stack_select == 2) { // pop 부분
+
+            // stack에 값이 있는지 없는지 확인하는 부분
             if (top_num == -1) {
                 cout << "짐 뺄게 없슴" << endl;
                 continue;
             }
 
+            cout << endl;
+            // 꺼낸 짐을 보여주고 없에버리는 부분
             cout << "꺼낸 짐: " << car[top_num] << endl;
             top_num--;
 
+            cout << endl;
             // 현재 안에 있는 짐 출력
             cout << "현재 차 안에 있는 짐" << endl;
             for (int i = 0; i <= top_num; i++) {
@@ -123,8 +134,9 @@ void stackk() {
             break;
         }
 
+        // 이상한거 넣으면 다시 넣으라고 하는 부분
         else {
-            cout << "올바른 선택지를 입력해주세요." << endl;
+            cout << "다시 넣으라고~~" << endl;
             cin.clear(); // 입력 버퍼를 비우고
             cin.ignore(numeric_limits<streamsize>::max(), '\n'); // 개행문자까지 무시
             continue;
