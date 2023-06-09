@@ -7,15 +7,12 @@
 #include <iostream>
 using namespace std;
 
-int waiting_list[10000];
-int top_num = -1;
-
 //메인 부분 구현(성식)
 int main() {
 	int select;
 
 	while (1) {
-		cout << "(1) 성재의 싱글벙글 짐 싣기 (2) 성재의 두근두근 접시 치우기 (3) 끝내기" << endl;
+		cout << "(1) 성재의 싱글벙글 큐로 짐 싣기 (2) 성재의 두근두근 스택으로 접시 치우기 (3) 끝내기" << endl;
 		cin >> select;
 
 		if (select == 1) {
@@ -50,7 +47,31 @@ int main() {
 이러한 방식으로 큐를 활용하면 주문의 도착 순서에 따라 요리가 준비되고 완료될 수 있습니다.
 */
 void queuee() {
+	int queuee_select;
 
+	int car[10000]; //차 안에 짐을 넣기 위해 차라는 배열을 만들었셈
+	int top_num = -1; //이걸로 왔다리 갔다리 할거라서
+
+	while (1) {
+		cout << "(1) 짐 싣기 (2) 짐 빼기 (3) 메인 화면으로 돌아가기" << endl;
+		cin >> queuee_select;
+
+		if (queuee_select == 1) {
+			
+		}
+
+		else if (queuee_select == 2) {
+			
+		}
+
+		else if (queuee_select == 3) {
+			main();
+		}
+
+		else {
+			cout << "다시 입력하삼" << endl;
+		}
+	}
 }
 
 
