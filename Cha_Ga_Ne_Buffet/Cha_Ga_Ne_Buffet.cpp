@@ -28,6 +28,7 @@ int main() {
 		}
 
 		else if (select == 3) {
+			cout << "빠빠이~";
 			break;
 		}
 
@@ -52,53 +53,7 @@ int main() {
 이러한 방식으로 큐를 활용하면 주문의 도착 순서에 따라 요리가 준비되고 완료될 수 있습니다.
 */
 void queuee() {
-	int queuee_select;
-
-	int car[10000]; //차 안에 짐을 넣기 위해 차라는 배열을 만들었셈
-	int top_num = -1; //이걸로 왔다리 갔다리 할거라서
-
-	char item; //짐을 저장하기 위해 만들었셈
 	
-	while (1) {
-		cout << "(1) 짐 싣기 (2) 짐 빼기 (3) 메인 화면으로 돌아가기" << endl;
-		cin >> queuee_select;
-
-		if (queuee_select == 1) { //push
-
-				//item을 받기 위해 만든 부분
-				cout << "짐을 넣어주세요" << endl;
-				cin >> item;
-
-				car[++top_num] = item; //car의 0번째부터 item을 넣겠다
-				
-				//현재 차 안에 있는 짐을 출력하기 위해 만든 부분
-				cout << "현재 차 안에 있는 짐" << endl;
-				cout << car[top_num] << endl;
-		}
-
-		else if (queuee_select == 2) { //pop
-
-			//만약 큐 안에 아무것도 없는지??
-			if (top_num == -1) {
-				cout << "짐 뺄게 없슴";
-			}
-
-			car[--top_num];
-			cout << "현재 차 안에 있는 짐" << endl;
-			for (int i = 0; i <= top_num; i++) {
-				cout << car[i];
-			}
-		}
-
-		else if (queuee_select == 3) {
-			main();
-		}
-
-		else {
-			cout << "다시 입력하삼" << endl;
-			continue;
-		}
-	}
 }
 
 
@@ -116,6 +71,52 @@ void queuee() {
 */
 
 void stackk() {
+	int stack_select;
 
+	int car[10000]; //차 안에 짐을 넣기 위해 차라는 배열을 만들었셈
+	int top_num = -1; //이걸로 왔다리 갔다리 할거라서
+
+	char item; //짐을 저장하기 위해 만들었셈
+
+	while (1) {
+		cout << "(1) 짐 싣기 (2) 짐 빼기 (3) 메인 화면으로 돌아가기" << endl;
+		cin >> stack_select;
+
+		if (stack_select == 1) { //push
+
+			//item을 받기 위해 만든 부분
+			cout << "짐을 넣어주세요" << endl;
+			cin >> item;
+
+			car[++top_num] = item; //cr의 0번째부터 item을 넣겠다
+
+			//현재 차 안에 있는 짐을 출력하기 위해 만든 부분
+			cout << "현재 차 안에 있는 짐" << endl;
+			cout << car[top_num] << endl;
+		}
+
+		else if (stack_select == 2) { //pop
+
+			//만약 큐 안에 아무것도 없는지??
+			if (top_num == -1) {
+				cout << "짐 뺄게 없슴";
+			}
+
+			car[--top_num];
+			cout << "현재 차 안에 있는 짐" << endl;
+			for (int i = 0; i <= top_num; i++) {
+				cout << car[i];
+			}
+		}
+
+		else if (stack_select == 3) {
+			main();
+		}
+
+		else {
+			cout << "다시 입력하삼" << endl;
+			continue;
+		}
+	}
 }
 
