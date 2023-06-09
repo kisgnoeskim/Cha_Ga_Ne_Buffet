@@ -3,8 +3,6 @@
 - 단, 최소 2가지 이상의 자료구조를 이용해야 함.
 - 1시나리오 1구조로 2가지 시나리오 구성 가능
 - ‘배열스택’은 스택에 해당. 배열과 스택 두가지로 보지 않음
-
-주제 : 성재가 차가네 부페에서 배열 리스트 큐를 이용해 서빙을 하는 것
 */
 #include <iostream>
 using namespace std;
@@ -14,8 +12,28 @@ int top_num = -1;
 
 //메인 부분 구현(성식)
 int main() {
+	int select;
 
+	while (1) {
+		cout << "(1) 성재의 싱글벙글 짐 싣기 (2) 성재의 두근두근 접시 치우기 (3) 끝내기" << endl;
+		cin >> select;
 
+		if (select == 1) {
+			stackk();
+		}
+
+		else if (select == 2) {
+			queuee();
+		}
+
+		else if (select == 3) {
+			break;
+		}
+
+		else {
+			cout << "다시 입력하삼" << endl;
+		}
+	}
 }
 
 //큐 부분 구현(성재)
