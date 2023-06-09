@@ -5,8 +5,11 @@
 - ‘배열스택’은 스택에 해당. 배열과 스택 두가지로 보지 않음
 */
 #include <iostream>
+#include <string>
+#include <vector>
+
 using namespace std;
-#define SIZE 10000  // 스택의 사이즈
+#define SIZE 10000  // 배열의 사이즈
 
 void queuee();
 void stackk();
@@ -16,15 +19,15 @@ int main() {
 	int select;
 
 	while (1) {
-		cout << "(1) 성재의 싱글벙글 큐로 짐 싣기 (2) 성재의 두근두근 스택으로 접시 치우기 (3) 끝내기" << endl;
+		cout << "(1) 성재의 싱글벙글 큐로 접시 치우기 (2) 성재의 두근두근 스택으로 짐 싣기 (3) 끝내기" << endl;
 		cin >> select;
 
 		if (select == 1) {
-			stackk();
+			queuee();
 		}
 
 		else if (select == 2) {
-			queuee();
+			stackk();
 		}
 
 		else if (select == 3) {
@@ -71,52 +74,52 @@ void queuee() {
 */
 
 void stackk() {
-	int stack_select;
+    int stack_select;
+    std::vector<std::string> car;
 
-	int car[10000]; //차 안에 짐을 넣기 위해 차라는 배열을 만들었셈
-	int top_num = -1; //이걸로 왔다리 갔다리 할거라서
+    while (1) {
+        std::cout << "(1) 짐 싣기 (2) 짐 빼기 (3) 메인 화면으로 돌아가기" << std::endl;
+        std::cin >> stack_select;
 
-	char item; //짐을 저장하기 위해 만들었셈
+        if (stack_select == 1) { // push 부분
+            std::string item;
+            std::cout << "짐을 넣어주세요" << std::endl;
+            std::cin >> item;
 
-	while (1) {
-		cout << "(1) 짐 싣기 (2) 짐 빼기 (3) 메인 화면으로 돌아가기" << endl;
-		cin >> stack_select;
+            car.push_back(item);
 
-		if (stack_select == 1) { //push
+            // 현재 안에 있는 짐 출력
+            std::cout << "현재 차 안에 있는 짐" << std::endl;
+            for (const auto& cargo : car) {
+                std::cout << cargo << " ";
+            }
+            std::cout << std::endl;
+        }
+        else if (stack_select == 2) { // pop 부분
+            if (car.empty()) {
+                std::cout << "짐 뺄게 없슴" << std::endl;
+                continue;
+            }
 
-			//item을 받기 위해 만든 부분
-			cout << "짐을 넣어주세요" << endl;
-			cin >> item;
+            std::cout << "꺼낸 짐: " << car.back() << std::endl;
+            car.pop_back();
 
-			car[++top_num] = item; //cr의 0번째부터 item을 넣겠다
-
-			//현재 차 안에 있는 짐을 출력하기 위해 만든 부분
-			cout << "현재 차 안에 있는 짐" << endl;
-			cout << car[top_num] << endl;
-		}
-
-		else if (stack_select == 2) { //pop
-
-			//만약 큐 안에 아무것도 없는지??
-			if (top_num == -1) {
-				cout << "짐 뺄게 없슴";
-			}
-
-			car[--top_num];
-			cout << "현재 차 안에 있는 짐" << endl;
-			for (int i = 0; i <= top_num; i++) {
-				cout << car[i];
-			}
-		}
-
-		else if (stack_select == 3) {
-			main();
-		}
-
-		else {
-			cout << "다시 입력하삼" << endl;
-			continue;
-		}
-	}
+            // 현재 안에 있는 짐 출력
+            std::cout << "현재 차 안에 있는 짐" << std::endl;
+            for (const auto& cargo : car) {
+                std::cout << cargo << " ";
+            }
+            std::cout << std::endl;
+        }
+        else if (stack_select == 3) { // 메인 화면으로 돌아가기
+            break;
+        }
+        else {
+            std::cout << "올바른 선택지를 입력해주세요." << std::endl;
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            continue;
+        }
+    }
 }
 
