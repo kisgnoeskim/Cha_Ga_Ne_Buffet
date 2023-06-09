@@ -6,7 +6,6 @@
 */
 #include <iostream>
 #include <string>
-#include <vector>
 
 using namespace std;
 #define SIZE 10000  // 배열의 사이즈
@@ -75,51 +74,60 @@ void queuee() {
 
 void stackk() {
     int stack_select;
-    std::vector<std::string> car;
+    string car[SIZE];
+    int top_num = -1;
 
     while (1) {
-        std::cout << "(1) 짐 싣기 (2) 짐 빼기 (3) 메인 화면으로 돌아가기" << std::endl;
-        std::cin >> stack_select;
+        cout << "(1) 짐 싣기 (2) 짐 빼기 (3) 메인 화면으로 돌아가기" << endl;
+        cin >> stack_select;
 
         if (stack_select == 1) { // push 부분
-            std::string item;
-            std::cout << "짐을 넣어주세요" << std::endl;
-            std::cin >> item;
-
-            car.push_back(item);
-
-            // 현재 안에 있는 짐 출력
-            std::cout << "현재 차 안에 있는 짐" << std::endl;
-            for (const auto& cargo : car) {
-                std::cout << cargo << " ";
-            }
-            std::cout << std::endl;
-        }
-        else if (stack_select == 2) { // pop 부분
-            if (car.empty()) {
-                std::cout << "짐 뺄게 없슴" << std::endl;
+            if (top_num == SIZE - 1) {
+                cout << "용달차가 꽉 찼습니다." << endl;
                 continue;
             }
 
-            std::cout << "꺼낸 짐: " << car.back() << std::endl;
-            car.pop_back();
+            string item;
+            cout << "짐을 넣어주세요" << endl;
+            cin >> item;
+
+            car[++top_num] = item;
 
             // 현재 안에 있는 짐 출력
-            std::cout << "현재 차 안에 있는 짐" << std::endl;
-            for (const auto& cargo : car) {
-                std::cout << cargo << " ";
+            cout << "현재 차 안에 있는 짐" << endl;
+            for (int i = 0; i <= top_num; i++) {
+                cout << car[i] << " ";
             }
-            std::cout << std::endl;
+            cout << endl;
+
         }
+
+        else if (stack_select == 2) { // pop 부분
+            if (top_num == -1) {
+                cout << "짐 뺄게 없슴" << endl;
+                continue;
+            }
+
+            cout << "꺼낸 짐: " << car[top_num] << endl;
+            top_num--;
+
+            // 현재 안에 있는 짐 출력
+            cout << "현재 차 안에 있는 짐" << endl;
+            for (int i = 0; i <= top_num; i++) {
+                cout << car[i] << " ";
+            }
+            cout << endl;
+        }
+
         else if (stack_select == 3) { // 메인 화면으로 돌아가기
             break;
         }
+
         else {
-            std::cout << "올바른 선택지를 입력해주세요." << std::endl;
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            cout << "올바른 선택지를 입력해주세요." << endl;
+            cin.clear(); // 입력 버퍼를 비우고
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // 개행문자까지 무시
             continue;
         }
     }
 }
-
