@@ -6,6 +6,10 @@
 */
 #include <iostream>
 using namespace std;
+#define SIZE 10000  // 스택의 사이즈
+
+void queuee();
+void stackk();
 
 //메인 부분 구현(성식)
 int main() {
@@ -75,14 +79,15 @@ void queuee() {
 		else if (queuee_select == 2) { //pop
 
 			//만약 큐 안에 아무것도 없는지??
-			if (car < 0) {
+			if (top_num == -1) {
 				cout << "짐 뺄게 없슴";
 			}
 
 			car[--top_num];
-
 			cout << "현재 차 안에 있는 짐" << endl;
-			cout << car[top_num] << endl;
+			for (int i = 0; i <= top_num; i++) {
+				cout << car[i];
+			}
 		}
 
 		else if (queuee_select == 3) {
@@ -114,8 +119,3 @@ void stackk() {
 
 }
 
-void printStack(int top, int car) {
-	for (int i = 0; i <= top; i++) {
-		cout << car[i];
-	}
-}
