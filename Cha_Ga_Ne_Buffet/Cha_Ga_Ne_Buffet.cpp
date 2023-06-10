@@ -6,6 +6,7 @@
 */
 #include <iostream>
 #include <string>
+#include <random>
 
 using namespace std;
 #define SIZE 10000  // 배열의 사이즈
@@ -18,6 +19,7 @@ int main() {
 	int select;
 
 	while (1) {
+        cout << endl;
 		cout << "(1) 성재의 싱글벙글 큐로 접시 치우기 (2) 성재의 두근두근 스택으로 짐 싣기 (3) 끝내기" << endl;
 		cin >> select;
 
@@ -55,11 +57,91 @@ int main() {
 이러한 방식으로 큐를 활용하면 주문의 도착 순서에 따라 요리가 준비되고 완료될 수 있습니다.
 */
 void queuee() {
-	
+    int request_num[SIZE];
+    int top_num = -1;  // 초기값 변경
+    int queue_select;
+
+    //랜덤한 숫자를 뽑기 위해 만듦
+    std::random_device rd;
+    std::mt19937 mt(rd());
+    std::uniform_int_distribution<int> dist(1, 20);
+
+    //여러개 뽑을라고
+    while (top_num < 10) {
+        int num = dist(mt);
+        bool isDuplicate = false;
+
+        // 중복된 숫자가 없을 때까지 반복
+        for (int i = 0; i < top_num; i++) {  // top_num을 범위로 수정
+            if (request_num[i] == num) {
+                isDuplicate = true;
+                break;
+            }
+        }
+
+        //중복 안되면 추가 ㄱㄱ
+        if (!isDuplicate) {
+            request_num[top_num++] = num;  // top_num 증가시키기
+        }
+    }
+
+    std::cout << std::endl;
+    std::cout << "현재 요청된 번호" << std::endl;
+
+    for (int i = 0; i < top_num; i++) {  // top_num을 범위로 수정
+        std::cout << request_num[i] << "번 테이블, ";
+    }
+    std::cout << std::endl;
+
+    //이제 여기서 큐로 요청을 처리할거임
+    while (1) {
+        cout << endl;
+        cout << "(1) 접시 치우기 (2) 메인 화면으로 돌아가기" << endl;
+        cin >> queue_select;
+
+        if (queue_select == 1) {
+
+            /*
+            // stack에 값이 있는지 없는지 확인하는 부분
+            if (top_num == -1) {
+                cout << "요청 처리할게 없슴" << endl;
+                continue;
+            }
+
+            cout << endl;
+            // 꺼낸 짐을 보여주고 없에버리는 부분
+            cout << "꺼낸 짐: " << car[top_num] << endl;
+            top_num--;
+
+            cout << endl;
+            // 현재 안에 있는 짐 출력
+            cout << "현재 차 안에 있는 짐" << endl;
+            for (int i = 0; i <= top_num; i++) {
+                cout << car[i] << " ";
+            }
+            cout << endl;
+        }
+            */
+
+        }
+
+        else if (queue_select == 2) { // 메인 화면으로 돌아가기
+            break;
+        }
+
+        // 이상한거 넣으면 다시 넣으라고 하는 부분
+        else {
+            cout << "다시 넣으라고~~" << endl;
+            cin.clear(); // 입력 버퍼를 비우고
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // 개행문자까지 무시
+            continue;
+        }
+    }
 }
 
 
-//스택 부분 구현(진영)
+
+//스택 부분 구현(진영 & 성식)
 /*
 스택(Stack)을 활용한 시나리오:
 성재는 용달차에 순서대로 짐을 실는 역할을 가진 직원입니다. 내릴때는 가장 앞에 있는 짐부터 내려야 합니다.
