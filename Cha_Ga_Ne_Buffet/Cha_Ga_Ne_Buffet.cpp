@@ -58,42 +58,43 @@ int main() {
 */
 void queuee() {
     int request_num[SIZE];
-    int top_num = -1;  // 초기값 변경
+    int front = 0;  // 큐의 시작 인덱스
+    int rear = -1;  // 큐의 끝 인덱스
     int queue_select;
 
-    //랜덤한 숫자를 뽑기 위해 만듦
+    // 랜덤한 숫자를 뽑기 위해 만듦
     std::random_device rd;
     std::mt19937 mt(rd());
     std::uniform_int_distribution<int> dist(1, 20);
 
-    //여러개 뽑을라고
-    while (top_num < 10) {
+    // 여러 개 뽑을 라고
+    while (rear < 10) {  // rear 값을 기준으로 반복
         int num = dist(mt);
         bool isDuplicate = false;
 
         // 중복된 숫자가 없을 때까지 반복
-        for (int i = 0; i < top_num; i++) {  // top_num을 범위로 수정
+        for (int i = front; i <= rear; i++) {  // front부터 rear까지 반복
             if (request_num[i] == num) {
                 isDuplicate = true;
                 break;
             }
         }
 
-        //중복 안되면 추가 ㄱㄱ
+        // 중복 안되면 추가
         if (!isDuplicate) {
-            request_num[top_num++] = num;  // top_num 증가시키기
+            request_num[++rear] = num;  // rear 값을 증가시키고 요소 추가
         }
     }
 
     std::cout << std::endl;
     std::cout << "현재 요청된 번호" << std::endl;
 
-    for (int i = 0; i < top_num; i++) {  // top_num을 범위로 수정
+    for (int i = front; i <= rear; i++) {
         std::cout << request_num[i] << "번 테이블, ";
     }
     std::cout << std::endl;
 
-    //이제 여기서 큐로 요청을 처리할거임
+    // 이제 여기서 큐로 요청을 처리할 거임
     while (1) {
         cout << endl;
         cout << "(1) 접시 치우기 (2) 메인 화면으로 돌아가기" << endl;
@@ -101,28 +102,23 @@ void queuee() {
 
         if (queue_select == 1) {
 
-            /*
-            // stack에 값이 있는지 없는지 확인하는 부분
-            if (top_num == -1) {
+            // 큐에 값이 있는지 없는지 확인하는 부분
+            if (front > rear) {
                 cout << "요청 처리할게 없슴" << endl;
                 continue;
             }
 
-            cout << endl;
-            // 꺼낸 짐을 보여주고 없에버리는 부분
-            cout << "꺼낸 짐: " << car[top_num] << endl;
-            top_num--;
+            // pop 연산
+            int removedElement = request_num[front];
+            front++;  // front 값을 증가시켜서 다음 요소를 가리키도록 함
+            cout << "처리된 요청: " << removedElement << endl;
 
-            cout << endl;
-            // 현재 안에 있는 짐 출력
-            cout << "현재 차 안에 있는 짐" << endl;
-            for (int i = 0; i <= top_num; i++) {
-                cout << car[i] << " ";
+            // 남아있는 요청 출력
+            cout << "남아있는 요청" << endl;
+            for (int i = front; i <= rear; i++) {
+                cout << request_num[i] << " ";
             }
             cout << endl;
-        }
-            */
-
         }
 
         else if (queue_select == 2) { // 메인 화면으로 돌아가기
@@ -138,6 +134,7 @@ void queuee() {
         }
     }
 }
+
 
 
 
