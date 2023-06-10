@@ -108,20 +108,20 @@ void queuee() {
                 continue;
             }
 
-            // pop 연산
-            int removedElement = request_num[front];
+            // pop 부분
+            int deleted_num = request_num[front];
             front++;  // front 값을 증가시켜서 다음 요소를 가리키도록 함
-            cout << "처리된 요청: " << removedElement << endl;
+            cout << "처리된 요청: " << deleted_num << endl;
 
             // 남아있는 요청 출력
             cout << "남아있는 요청" << endl;
             for (int i = front; i <= rear; i++) {
-                cout << request_num[i] << " ";
+                cout << request_num[i] << "번 ";
             }
             cout << endl;
         }
 
-        else if (queue_select == 2) { // 메인 화면으로 돌아가기
+        else if (queue_select == 2) {
             break;
         }
 
@@ -134,8 +134,6 @@ void queuee() {
         }
     }
 }
-
-
 
 
 //스택 부분 구현(진영 & 성식)
